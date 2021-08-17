@@ -89,8 +89,7 @@ for item_list in items:
 class HelloWorld(Resource):
     def get(self):
         # print(product_data)
-        for lst in content_list:
-            return lst
+        return content_list
 
 
 api.add_resource(HelloWorld, "/sentiment")
