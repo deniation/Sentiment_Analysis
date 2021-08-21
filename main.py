@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from bs4 import BeautifulSoup
 from flask_restful import Api, Resource
+from flask_cors import CORS
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -9,6 +10,7 @@ import string
 import pandas as pd
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 amazon_url = 'https://www.jumia.co.ke/womens-skirts/'
@@ -86,13 +88,13 @@ for item_list in items:
 
         # print('https://www.jumia.co.ke' + uli['href'])
 
-class HelloWorld(Resource):
+class SentimentAnalysis(Resource):
     def get(self):
         # print(product_data)
         return content_list
 
 
-api.add_resource(HelloWorld, "/sentiment")
+api.add_resource(SentimentAnalysis, "/sentiment")
 
 if __name__ == '__main__':
     app.run(debug=True)
